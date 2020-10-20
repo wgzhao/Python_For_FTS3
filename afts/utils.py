@@ -15,7 +15,7 @@
 import pandas as pd
 import numpy as np
 import scipy.stats
-
+from statsmodels.api import tsa
 
 def mean_confidence_interval(data: pd.DataFrame, confidence=0.95):
     """
@@ -57,3 +57,15 @@ def basic_stats(df: pd.DataFrame):
     {'Skewness':<12}{df.skew():<.8f} % Sample skewness
     {'Kurtosis':<12}{df.kurtosis():<.8f} % Sampke excess kurtosis
     """)
+
+
+def ljungbox(x:np.ndarray, lags: int =5):
+    """
+    Compute Ljung-Box
+
+    :param x: numpy 1d array
+    :param lags: perioid
+    :return: (x-squared, p-value)
+    """
+    _, _, qstat, pv  = tsa.acf(x, nlags=lags, qstat=True, alpha=0.05, fft=False)
+    return qstat[-1], pv[-1]

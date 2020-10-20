@@ -19,8 +19,8 @@ from math import sqrt
 import pandas as pd
 import numpy as np
 import scipy.stats as stats
-from lecture import DATA_DIR
-from lecture.utils import basic_stats
+from afts import DATA_DIR
+from afts.utils import basic_stats
 
 # Set the file path
 filepath = DATA_DIR.joinpath('d-ibm3dx7008.txt.gz')
